@@ -12,4 +12,4 @@ This repository contains an implementation of a 5-stage RISC-V RV32I processor i
 
 Below is the block diagram of the whole architecture:
 
-![Block Diagram](doc/block_diagram.png)
+![Block Diagram](/doc/block_diagram.jpg)
