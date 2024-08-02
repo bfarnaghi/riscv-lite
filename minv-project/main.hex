@@ -1,0 +1,53 @@
+
+main:     file format elf32-littleriscv
+
+
+Disassembly of section .init:
+
+00400000 <_start>:
+  400000:	1fc18197          	auipc	gp,0x1fc18
+  400004:	01c18193          	addi	gp,gp,28 # 2001801c <__global_pointer$>
+  400008:	7fbff117          	auipc	sp,0x7fbff
+  40000c:	ff410113          	addi	sp,sp,-12 # 7fffeffc <__stack_top>
+  400010:	00010433          	add	s0,sp,zero
+  400014:	008000ef          	jal	ra,40001c <main>
+
+00400018 <el>:
+  400018:	0000006f          	j	400018 <el>
+
+Disassembly of section .text:
+
+0040001c <main>:
+  40001c:	10010537          	lui	a0,0x10010
+  400020:	ff010113          	addi	sp,sp,-16
+  400024:	00700593          	li	a1,7
+  400028:	00050513          	mv	a0,a0
+  40002c:	00112623          	sw	ra,12(sp)
+  400030:	01c000ef          	jal	ra,40004c <minv>
+  400034:	00c12083          	lw	ra,12(sp)
+  400038:	100107b7          	lui	a5,0x10010
+  40003c:	00a7ae23          	sw	a0,28(a5) # 1001001c <_edata>
+  400040:	00000513          	li	a0,0
+  400044:	01010113          	addi	sp,sp,16
+  400048:	00008067          	ret
+
+0040004c <minv>:
+  40004c:	00052603          	lw	a2,0(a0) # 10010000 <v>
+  400050:	00100713          	li	a4,1
+  400054:	41f65793          	srai	a5,a2,0x1f
+  400058:	00c7c633          	xor	a2,a5,a2
+  40005c:	40f60633          	sub	a2,a2,a5
+  400060:	02b75863          	ble	a1,a4,400090 <minv+0x44>
+  400064:	00259593          	slli	a1,a1,0x2
+  400068:	00450713          	addi	a4,a0,4
+  40006c:	00b50533          	add	a0,a0,a1
+  400070:	00072783          	lw	a5,0(a4)
+  400074:	00470713          	addi	a4,a4,4
+  400078:	41f7d693          	srai	a3,a5,0x1f
+  40007c:	00f6c7b3          	xor	a5,a3,a5
+  400080:	40d787b3          	sub	a5,a5,a3
+  400084:	00c7d463          	ble	a2,a5,40008c <minv+0x40>
+  400088:	00078613          	mv	a2,a5
+  40008c:	fee512e3          	bne	a0,a4,400070 <minv+0x24>
+  400090:	00060513          	mv	a0,a2
+  400094:	00008067          	ret
